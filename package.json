@@ -1,0 +1,60 @@
+{
+  "name": "@32one/react-components",
+  "version": "0.1.8",
+  "description": "React enterprise application tools",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -declaration",
+    "pre-publish": "rimraf dist; npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ninjs.git"
+  },
+  "keywords": [
+    "react",
+    "material-ui",
+    "enterprise"
+  ],
+  "author": "Bryan Ricci",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/riccijs/ninjs/issues"
+  },
+  "homepage": "https://github.com/riccijs/ninjs#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.x",
+    "@material-ui/icons": "^4.x",
+    "classnames": "^2.2.6",
+    "moment": "^2.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-script": "^2.0.5",
+    "react-scripts": "3.4.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.x",
+    "@testing-library/react": "^10.4.7",
+    "@testing-library/user-event": "^12.1.0",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^26.x",
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.44",
+    "@types/react-dom": "^16.9.8",
+    "rimraf": "^3.0.2",
+    "source-map-loader": "^1.0.1",
+    "ts-loader": "^8.0.2",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
