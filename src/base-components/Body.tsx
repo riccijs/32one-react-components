@@ -8,7 +8,6 @@ interface BodyProps {
 const useStyles = makeStyles(theme => ({
   container: {
     height: 'inherit',
-    display: 'flex',
     background: theme.palette.background.default,
     color: theme.palette.text.primary,
     overflowY: 'scroll',
