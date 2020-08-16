@@ -1,12 +1,16 @@
 import React, { cloneElement } from 'react'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 import { BodyProps } from './compiler/types'
-import Header from './components/header/Header'
-import Footer from './components/footer/Footer'
-import Sidebar from './components/sidebar/Sidebar'
-import FrameBody from './components/body/Body'
-import Frame from './components/frame/Frame'
-import { defaultTheme } from './utils'
+import Header from './base-components/Header'
+import Footer from './base-components/Footer'
+import Sidebar from './base-components/Sidebar'
+import FrameBody from './base-components/Body'
+import Frame from './base-components/Frame'
+import { theme } from './utils'
+
+export * from './components'
+export * from './pages'
+export * from './utils'
 
 export function Body(props: BodyProps) {
   const {
@@ -20,7 +24,7 @@ export function Body(props: BodyProps) {
   } = props
   
   return (
-    <MuiThemeProvider theme={ createMuiTheme(themeOptions || defaultTheme) }>
+    <MuiThemeProvider theme={ createMuiTheme(themeOptions || theme) }>
       {children}
       <Frame
         sidebar={sidebar ? <Sidebar sidebarHeader={sidebarHeader}>{ cloneElement(sidebar) }</Sidebar> : void 0 }

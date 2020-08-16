@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 
-type Breakpoint = {
+export type Breakpoint = {
   value: number
   isBelowBreakpoint: boolean
   isAboveBreakpoint: boolean
 }
 
-interface Breakpoints {
+export interface Breakpoints {
   xs: Breakpoint
   sm: Breakpoint
   md: Breakpoint

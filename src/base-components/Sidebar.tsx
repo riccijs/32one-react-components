@@ -2,7 +2,7 @@ import React, { ReactElement, useState, useRef, useEffect, cloneElement } from '
 import classnames from 'classnames'
 import { makeStyles, Drawer, Toolbar, IconButton } from '@material-ui/core'
 import { Menu } from '@material-ui/icons'
-import useScreenDimension from '../../hooks/useScreenDimension'
+import useScreenDimension from '../hooks/useScreenDimension'
 
 export interface SidebarProps {
   children: ReactElement
