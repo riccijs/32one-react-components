@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, ChangeEvent, FormEvent, useEffect, FunctionComponent, MouseEvent } from 'react'
 import { Card, CardContent, CardHeader, TextField, CardActions, Button, Slide, Link } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
-import useUser from '../hooks/useUser'
+import useDefaultApplicationUser from '../hooks/useDefaultApplicationUser'
 
 interface SignInFormData {
   usernameOrEmail: string
@@ -25,7 +25,7 @@ const SignIn: FunctionComponent<SignInProps> = ({ postSignInUrl, onError, onSucc
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const history = useHistory()
-  const { checkIfUsernameOrEmailAddressExists, signIn } = useUser()
+  const { checkIfUsernameOrEmailAddressExists, signIn } = useDefaultApplicationUser()
 
   function handleInput(event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
     const { name, value } = event.target

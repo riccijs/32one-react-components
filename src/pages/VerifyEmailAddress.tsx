@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useEffect, useCallback, useState } from 'react
 import { useLocation, useHistory } from 'react-router-dom'
 import { Card, CardHeader } from '@material-ui/core'
 import CircularLoader from '../components/CircularLoader'
-import userUser from '../hooks/useUser'
+import useDefaultApplicationUser from '../hooks/useDefaultApplicationUser'
 
 export interface VerifyEmailAddressProps {
   onSuccess?: any
@@ -15,7 +15,7 @@ const VerifyEmailAddress: FC<VerifyEmailAddressProps> = ({onSuccess, onError}): 
   const history = useHistory()
   const handleSuccess = useCallback(onSuccess, [])
   const handleError = useCallback(onError, [])
-  const { verifyContactInformation } = userUser()
+  const { verifyContactInformation } = useDefaultApplicationUser()
 
   const handleVerifyEmailAddress = useCallback(async () => {
     try {

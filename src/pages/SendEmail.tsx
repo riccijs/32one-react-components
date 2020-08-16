@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useState, useCallback, useEffect, Fragment } f
 import { Card, CardHeader, CardContent, CardActions, Button, Slide } from '@material-ui/core'
 import { useParams } from 'react-router-dom'
 import CircularLoader from '../components/CircularLoader'
-import useUser from '../hooks/useUser'
+import useDefaultApplicationUser from '../hooks/useDefaultApplicationUser'
 
 export interface SendEmailProps {
   onInfo?: any
@@ -29,7 +29,7 @@ const SendEmail: FC<SendEmailProps> = ({onInfo, onError}): ReactElement => {
   const handleError = useCallback(onError, [])
   const handleInfo = useCallback(onInfo, [])
   const { type }: {type: 'email' | 'password'} = useParams()
-  const { sendEmail } = useUser()
+  const { sendEmail } = useDefaultApplicationUser()
 
   const sendVerificationEmail = useCallback(async () => {
     setError('')

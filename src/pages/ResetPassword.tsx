@@ -3,7 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import { Card, CardHeader, CardContent, TextField, CardActions, Button } from '@material-ui/core'
 import owasp from 'owasp-password-strength-test'
 import CircularLoader from '../components/CircularLoader'
-import useUser from '../hooks/useUser'
+import useDefaultApplicationUser from '../hooks/useDefaultApplicationUser'
 
 export interface ResetPasswordProps {
   onSuccess?: any
@@ -16,7 +16,7 @@ const ResetPassword: FC<ResetPasswordProps> = ({ onSuccess, onError }): ReactEle
   const [errors, setErrors] = useState<any>([])
   const { search } = useLocation()
   const history = useHistory()
-  const { resetPassword } = useUser()
+  const { resetPassword } = useDefaultApplicationUser()
 
   function handlePassword(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { value } = event.target

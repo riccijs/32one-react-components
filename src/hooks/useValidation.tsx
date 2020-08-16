@@ -1,6 +1,6 @@
 import { validation } from '../utils'
 import { useState, useEffect } from 'react'
-import useUser from './useUser'
+import useDefaultApplicationUser from './useDefaultApplicationUser'
 
 export interface Validate {
   emailAddress?: string
@@ -10,7 +10,7 @@ export interface Validate {
 
 export default function useValidation(validate: Validate) {
   const [usernameAvailable, setUsernameAvailable] = useState<string>('')
-  const { checkUsernameAvailability } = useUser()
+  const { checkUsernameAvailability } = useDefaultApplicationUser()
   
   const emailAddress = !!validate.emailAddress && !validation.emailAddress(validate.emailAddress) 
     ? 'Enter a valid email address'
