@@ -11,6 +11,7 @@ import { theme } from './utils'
 export * from './components'
 export * from './pages'
 export * from './utils'
+export * from './hooks'
 
 export function Body(props: BodyProps) {
   const {
