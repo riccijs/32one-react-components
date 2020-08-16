@@ -22,8 +22,8 @@ export const defaultAppContext = {
   handleAuthSuccess: () => {},
 }
 
-export default function useDefaultApplicationState(clientName: string, muiTheme: any) {
-  const defaultThemeType: any = cookies.get('themeType') || 'light'
+export default function useDefaultApplicationState(clientName: string, muiTheme: any, initialThemeType?: 'light' | 'dark') {
+  const defaultThemeType: any = cookies.get('themeType') || initialThemeType || 'light'
   const defaultUserProfile: any = cookies.get('userProfile')
   const [themeType, setThemeType] = useState<'light' | 'dark'>(defaultThemeType)
   const [hasClientId, setHasClientId] = useState<boolean>(false)
