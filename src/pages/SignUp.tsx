@@ -1,9 +1,9 @@
 import React, { FC, ReactElement, useState, ChangeEvent, useEffect, FormEvent, Fragment, useCallback } from 'react'
 import { Card, CardHeader, CardContent, TextField, Slide, Button, CardActions, Link } from '@material-ui/core'
 import { format } from '../utils'
-import useUser from '../hooks/useUser'
+import useDefaultApplicationUser from '../hooks/useDefaultApplicationUser'
 import CircularLoader from '../components/CircularLoader'
-import useClient from '../hooks/useClient'
+import useDefaultApplicationClient from '../hooks/useDefaultApplicationClient'
 import { useHistory } from 'react-router-dom'
 import useValidation from '../hooks/useValidation'
 
@@ -52,8 +52,8 @@ const SignUp: FC<SignUpProps> = ({
   const [currentClient, setCurrentClient] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const { firstName, lastName, username, emailAddress, password } = user
-  const { getClientName } = useClient()
-  const { checkIfUsernameOrEmailAddressExists, checkPreviousRegistration, signIn, register, registerClient } = useUser()
+  const { getClientName } = useDefaultApplicationClient()
+  const { checkIfUsernameOrEmailAddressExists, checkPreviousRegistration, signIn, register, registerClient } = useDefaultApplicationUser()
   const handleError = useCallback(onError, [])
   const history = useHistory()
   const error = useValidation(user)

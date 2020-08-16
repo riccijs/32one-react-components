@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import Axios from 'axios'
 
-export default function useClient() {
+export default function useDefaultApplicationClient() {
   const getClientName = useCallback(async () => {
     return await Axios.get('/api/client/name')
   }, [])

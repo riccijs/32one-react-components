@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { cookies } from '../utils'
-import useClient from './useClient'
+import useDefaultApplicationClient from './useDefaultApplicationClient'
 import {
   AlertType,
   AlertDefaultObject,
@@ -29,7 +29,7 @@ export default function useDefaultApplicationState(clientName: string, muiTheme:
   const [hasClientId, setHasClientId] = useState<boolean>(false)
   const [userProfile, setUserProfile] = useState<any>(defaultUserProfile ? JSON.parse(defaultUserProfile) : void 0)
   const [alert, setAlert] = useState<AlertType>(new AlertDefaultObject())
-  const { setClientId } = useClient()
+  const { setClientId } = useDefaultApplicationClient()
   const themeOptions = muiTheme(themeType)
   const userRoles: UserRoles = userProfile ? [...userProfile.roles] : ['guest']
 

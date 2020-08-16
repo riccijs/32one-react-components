@@ -7,7 +7,7 @@ export interface SendEmailOptions {
   template: string
 }
 
-export default function useUser() {
+export default function useDefaultApplicationUser() {
   const checkIfUsernameOrEmailAddressExists = async (usernameOrEmail: string, isGlobalCheck?: boolean) => {
     const isEmailAddress = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,12})+$/.test(usernameOrEmail)
     const data = isEmailAddress ? { emailAddress: usernameOrEmail } : { username: usernameOrEmail }
