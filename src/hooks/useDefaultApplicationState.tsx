@@ -56,11 +56,16 @@ export default function useDefaultApplicationState(clientName: string, muiTheme:
     })
   }, [])
 
-  const alertFunctions: any = {
-    error: handleAlert('error'),
-    success: handleAlert('success'),
-    warning: handleAlert('warning'),
-    info: handleAlert('info'),
+  const error = useCallback(handleAlert('error'), [handleAlert])
+  const success = useCallback(handleAlert('success'), [handleAlert])
+  const warning = useCallback(handleAlert('warning'), [handleAlert])
+  const info = useCallback(handleAlert('info'), [handleAlert])
+
+  const alertFunctions = {
+    error,
+    success,
+    warning,
+    info,
   }
 
   const provider: any = {
