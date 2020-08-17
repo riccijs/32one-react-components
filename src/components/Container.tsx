@@ -21,7 +21,7 @@ const Container: FC<ContainerProps> = ({ children, width: inWidth, align }: Cont
   const width = Number(inWidth)
   const style = minWidthAllowed ? { margin: `${align === 'top' ? 0 : 'auto'} calc(50vw - ${width / 2}px) auto auto`, width } : void 0
   const styleFull = {
-    display: 'none',
+    display: 'block',
     width: '100%',
     height: '100%',
   }
