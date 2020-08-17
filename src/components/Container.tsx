@@ -2,8 +2,8 @@ import React, { ReactElement, FC, useState } from 'react'
 
 export interface ContainerProps {
   children: any
-  width: '300' | '600' | '960' | '1024' | '1280' | '1920'
-  align: 'top' | 'center'
+  width: '300' | '600' | '960' | '1024' | '1280' | '1920' | 'full'
+  align: 'top' | 'center' | 'full'
 }
 
 const widthCutoff: any = {
@@ -17,15 +17,21 @@ const widthCutoff: any = {
 
 const Container: FC<ContainerProps> = ({ children, width: inWidth, align }: ContainerProps): ReactElement => {
   const [windowInnerWidth, setWindowInnerWidth] = useState<number>(window.innerWidth)
-  const minWidthAllowed = windowInnerWidth > widthCutoff[inWidth]
+  const minWidthAllowed = inWidth !== 'full' ? windowInnerWidth > widthCutoff[inWidth] : false
   const width = Number(inWidth)
   const style = minWidthAllowed ? { margin: `${align === 'top' ? 0 : 'auto'} calc(50vw - ${width / 2}px) auto auto`, width } : void 0
+  const styleFull = {
+    display: 'none',
+    width: '100%',
+    height: '100%',
+  }
+  if (inWidth !== 'full') {
+    window.addEventListener('resize', () => {
+      setWindowInnerWidth(window.innerWidth)
+    })
+  }
 
-  window.addEventListener('resize', () => {
-    setWindowInnerWidth(window.innerWidth)
-  })
-
-  return <div style={style}>{children}</div>
+  return <div style={inWidth !== 'full' ? style : styleFull}>{children}</div>
 }
 
 export default Container
