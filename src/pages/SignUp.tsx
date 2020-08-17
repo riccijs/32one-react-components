@@ -54,7 +54,6 @@ const SignUp: FC<SignUpProps> = ({
   const { firstName, lastName, username, emailAddress, password } = user
   const { getClientName } = useDefaultApplicationClient()
   const { checkIfUsernameOrEmailAddressExists, checkPreviousRegistration, signIn, register, registerClient } = useDefaultApplicationUser()
-  const handleError = useCallback(onError, [])
   const history = useHistory()
   const error = useValidation(user)
 
@@ -79,12 +78,12 @@ const SignUp: FC<SignUpProps> = ({
       setCurrentClient(clientName)
     }
     catch ({ response: { data }}) {
-      handleError(data)
+      onError(data)
     }
     finally {
       setIsLoading(false)
     }
-  }, [getClientName, handleError])
+  }, [getClientName, onError])
 
   const handleCheckForExistingUser = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()

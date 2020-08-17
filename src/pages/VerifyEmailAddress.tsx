@@ -13,21 +13,19 @@ const VerifyEmailAddress: FC<VerifyEmailAddressProps> = ({onSuccess, onError}): 
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const { search } = useLocation()
   const history = useHistory()
-  const handleSuccess = useCallback(onSuccess, [])
-  const handleError = useCallback(onError, [])
   const { verifyContactInformation } = useDefaultApplicationUser()
 
   const handleVerifyEmailAddress = useCallback(async () => {
     try {
       const { data } = await verifyContactInformation(search)
-      if (handleSuccess) handleSuccess(data)
+      if (onSuccess) onSuccess(data)
       history.push('/sign-in')
     }
     catch ({ response: { data }}) {
-      if (handleError) handleError(data)
+      if (onError) onError(data)
       setIsLoading(false)
     }
-  }, [handleSuccess, handleError, history, search, verifyContactInformation])
+  }, [onSuccess, onError, history, search, verifyContactInformation])
 
   useEffect(() => {
     handleVerifyEmailAddress()
