@@ -11,15 +11,24 @@ interface FrameProps {
 type ClassName = 'body' | 'header' | 'footer' | 'headerFooter'
 
 const useStyles = makeStyles( theme => ({
-  container: {
-    display: 'flex',
+  full: {
+    flexGrow: 1,
     height: '100vh',
     width: '100%',
+    zIndex: 1,
     overflow: 'hidden',
+    position: 'fixed',
+    display: 'flex',
   },
-  main: {
+  section: {
+    position: 'relative',
+    height: '100vh',
     width: '100%',
-    height: '100%',
+    flex: 1,
+    flexWrap: 'wrap',
+    background: theme.palette.background.default,
+    color: theme.palette.text.primary,
+    overflow: 'hidden',
   },
   body: {
     height: '100%'
@@ -32,7 +41,7 @@ const useStyles = makeStyles( theme => ({
   },
   footer: {
     height: `calc(100vh - ${theme.spacing(9) + 1}px)`
-  }
+  },
 }))
 
 const Frame = ({header, sidebar, body, footer}: FrameProps) => {
@@ -53,14 +62,35 @@ const Frame = ({header, sidebar, body, footer}: FrameProps) => {
   }
 
   return (
-    <div className={classes.container}>
+    // This "full" container uses flex to create a
+    // container for the application
+    <DisplayContainer type="full">
       { sidebar }
-      <div className={classes.main}>
+      
+      {/**
+       * Display sections provide flex containers that
+       * work in conjuction with the sidebar.
+       */}
+      <DisplayContainer id="display-main" type="section">
         { header }
         { renderBody(body, bodyClassName) }
         { footer }
-      </div>
-    </div>
+      </DisplayContainer>
+
+    </DisplayContainer>
+  )
+}
+
+export interface DisplayContainerProps { 
+  children: any
+  type: 'full' | 'section'
+  id?: string
+}
+
+function DisplayContainer({ children, type, id }: DisplayContainerProps): ReactElement {
+  const classes = useStyles()
+  return (
+    <div id={id} className={classes[type]}>{children}</div>
   )
 }
 
