@@ -7,6 +7,8 @@ import useScreenDimension from '../hooks/useScreenDimension'
 export interface SidebarProps {
   children: ReactElement
   sidebarHeader?: ReactElement
+  backgroundColor?: string
+  color?: string
 }
 
 const useStyles = makeStyles(theme => ({
@@ -48,11 +50,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Sidebar = ({ children, sidebarHeader }: SidebarProps) => {
+const Sidebar = ({ children, sidebarHeader, backgroundColor, color }: SidebarProps) => {
   const [ isOpen, setIsOpen ] = useState(false)
   const refIsMdOrSmaller = useRef(true)
   const { breakpoints: { md } } = useScreenDimension()
   const classes = useStyles()
+  const style = { backgroundColor, color }
   const handleToggleSidebar = () => setIsOpen(previousIsOpen => !previousIsOpen)
   
   useEffect(() => {
@@ -72,9 +75,10 @@ const Sidebar = ({ children, sidebarHeader }: SidebarProps) => {
       variant="permanent"
       anchor="left"
       classes={{ paper: classnames(classes.drawer, isOpen ? classes.drawerOpen : classes.drawerClosed )}}
+      style={style}
       open
     >
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar} style={style}>
         <IconButton onClick={handleToggleSidebar}>
           <Menu />
         </IconButton>

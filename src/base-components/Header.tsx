@@ -3,7 +3,8 @@ import { makeStyles, Toolbar, AppBar } from '@material-ui/core'
 
 interface HeaderProps {
   children?: ReactElement
-  isForSidebar?: true
+  backgroundColor?: string
+  color?: string
 }
 
 const useStyles = makeStyles(theme => ({
@@ -17,12 +18,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Header({ children }: HeaderProps) {
-
+export default function Header({ children, backgroundColor, color }: HeaderProps) {
   const classes = useStyles()
+  const style = { backgroundColor, color }
   return (
     <AppBar position="relative">
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar} style={style}>
         { children }
       </Toolbar>
     </AppBar>

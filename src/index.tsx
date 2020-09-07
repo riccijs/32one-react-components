@@ -17,8 +17,12 @@ export function Body(props: BodyProps) {
   const {
     themeOptions,
     header,
+    headerBackgroundColor,
+    headerColor,
     sidebar,
     sidebarHeader,
+    sidebarBackgroundColor,
+    sidebarColor,
     body,
     footer,
     children,
@@ -28,8 +32,29 @@ export function Body(props: BodyProps) {
     <MuiThemeProvider theme={ createMuiTheme(themeOptions || theme) }>
       {children}
       <Frame
-        sidebar={sidebar ? <Sidebar sidebarHeader={sidebarHeader}>{ cloneElement(sidebar) }</Sidebar> : void 0 }
-        header={header ? <Header>{ cloneElement(header) }</Header> : void 0 }
+        sidebar={sidebar 
+          ? (
+            <Sidebar 
+              sidebarHeader={sidebarHeader}
+              backgroundColor={sidebarBackgroundColor}
+              color={sidebarColor}
+            >
+              { cloneElement(sidebar) }
+            </Sidebar>
+          ) 
+          : void 0 
+        }
+        header={header 
+          ? (
+            <Header
+              backgroundColor={headerBackgroundColor}
+              color={headerColor}
+            >
+              { cloneElement(header) }
+            </Header>
+          ) 
+          : void 0 
+        }
         body={body ? <FrameBody>{ cloneElement(body) }</FrameBody> : void 0 }
         footer={footer ? <Footer>{ cloneElement(footer) }</Footer> : void 0 }
       />
