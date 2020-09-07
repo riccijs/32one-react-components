@@ -22,7 +22,7 @@ export const defaultAppContext = {
   handleAuthSuccess: () => {},
 }
 
-export default function useDefaultApplicationState(clientName: string, muiTheme: any, initialThemeType?: 'light' | 'dark') {
+export default function useDefaultApplicationState(clientName: string, muiTheme: any, initialThemeType?: 'light' | 'dark', customDarkTheme?: any, customDarkThemeBackgroundColor?: string) {
   const defaultThemeType: any = cookies.get('themeType') || initialThemeType || 'light'
   const defaultUserProfile: any = cookies.get('userProfile')
   const [themeType, setThemeType] = useState<'light' | 'dark'>(defaultThemeType)
@@ -30,7 +30,7 @@ export default function useDefaultApplicationState(clientName: string, muiTheme:
   const [userProfile, setUserProfile] = useState<any>(defaultUserProfile ? JSON.parse(defaultUserProfile) : void 0)
   const [alert, setAlert] = useState<AlertType>(new AlertDefaultObject())
   const { setClientId } = useDefaultApplicationClient()
-  const themeOptions = muiTheme(themeType)
+  const themeOptions = themeType === 'dark' && !!customDarkTheme ? customDarkTheme(customDarkThemeBackgroundColor) : muiTheme(themeType)
   const userRoles: UserRoles = userProfile ? [...userProfile.roles] : ['guest']
 
   const onToggleTheme = (event: React.MouseEvent<HTMLElement>, themeType: 'light' | 'dark') => {
