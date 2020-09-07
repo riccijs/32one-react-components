@@ -75,7 +75,7 @@ const Sidebar = ({ children, sidebarHeader, backgroundColor, color }: SidebarPro
       variant="permanent"
       anchor="left"
       classes={{ paper: classnames(classes.drawer, isOpen ? classes.drawerOpen : classes.drawerClosed )}}
-      PaperProps={style}
+      PaperProps={{ style }}
       open
     >
       <Toolbar className={classes.toolbar} style={style}>
