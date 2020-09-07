@@ -5,9 +5,12 @@ import { Brightness2TwoTone, Brightness5TwoTone } from '@material-ui/icons'
 export interface ThemeToggleProps {
   themeType: 'dark' | 'light'
   onToggle: (event: MouseEvent<HTMLElement>, value: any) => void
+  backgroundColor?: string
+  color?: string
 }
 
-const ThemeToggle = ({ themeType, onToggle }: ThemeToggleProps) => {
+const ThemeToggle = ({ themeType, onToggle, backgroundColor, color }: ThemeToggleProps) => {
+  const style = { backgroundColor, color }
   return (
     <ToggleButtonGroup
       value={themeType}
@@ -15,11 +18,11 @@ const ThemeToggle = ({ themeType, onToggle }: ThemeToggleProps) => {
       onChange={onToggle}
       aria-label="text alignment"
     >
-      <ToggleButton value="light" aria-label="light" size="small" disabled={themeType === 'light'}>
-        <Brightness5TwoTone />
+      <ToggleButton value="light" aria-label="light" size="small" style={style} disabled={themeType === 'light'}>
+        <Brightness5TwoTone style={style} />
       </ToggleButton>
-      <ToggleButton value="dark" aria-label="dark" size="small" disabled={themeType === 'dark'}>
-        <Brightness2TwoTone />
+      <ToggleButton value="dark" aria-label="dark" size="small" disabled={themeType === 'dark'} style={style}>
+        <Brightness2TwoTone style={style} />
       </ToggleButton>
     </ToggleButtonGroup>
   )

@@ -8,6 +8,8 @@ export interface SidebarProps {
   children: ReactElement
   sidebarHeader?: ReactElement
   backgroundColor?: string
+  sidebarHeaderBackgroundColor?: string
+  sidebarHeaderColor?: string
   color?: string
 }
 
@@ -82,7 +84,7 @@ const Sidebar = ({ children, sidebarHeader, backgroundColor, color }: SidebarPro
         <IconButton onClick={handleToggleSidebar}>
           <Menu style={style}/>
         </IconButton>
-        {!!sidebarHeader ? <div className={classes.sidebarHeader} style={style}>{cloneElement(sidebarHeader)}</div> : null}
+        {!!sidebarHeader ? <div className={classes.sidebarHeader} style={style}>{cloneElement(sidebarHeader, { backgroundColor, color })}</div> : null}
       </Toolbar>
       { children }
     </Drawer>
