@@ -75,14 +75,14 @@ const Sidebar = ({ children, sidebarHeader, backgroundColor, color }: SidebarPro
       variant="permanent"
       anchor="left"
       classes={{ paper: classnames(classes.drawer, isOpen ? classes.drawerOpen : classes.drawerClosed )}}
-      style={style}
+      PaperProps={style}
       open
     >
       <Toolbar className={classes.toolbar} style={style}>
         <IconButton onClick={handleToggleSidebar}>
-          <Menu />
+          <Menu style={style}/>
         </IconButton>
-        {!!sidebarHeader ? <div className={classes.sidebarHeader}>{cloneElement(sidebarHeader)}</div> : null}
+        {!!sidebarHeader ? <div className={classes.sidebarHeader} style={style}>{cloneElement(sidebarHeader)}</div> : null}
       </Toolbar>
       { children }
     </Drawer>
