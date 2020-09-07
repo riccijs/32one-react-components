@@ -6,11 +6,17 @@ export interface BodyProps {
   header?: ReactElement
   headerBackgroundColor?: string
   headerColor?: string
+  headerBorderColor?: string
   sidebar?: ReactElement
   sidebarBackgroundColor?: string
   sidebarColor?: string
+  sidebarBorderColor?: string
   sidebarHeader?: ReactElement
   body?: ReactElement
   footer?: ReactElement
+  footerBackgroundColor?: string
+  footerColor?: string
+  footerBorderColor?: string
+  footerFixed?: boolean
   children?: ReactElement
 }

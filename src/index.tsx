@@ -19,12 +19,18 @@ export function Body(props: BodyProps) {
     header,
     headerBackgroundColor,
     headerColor,
+    headerBorderColor,
     sidebarHeader,
     sidebar,
     sidebarBackgroundColor,
     sidebarColor,
+    sidebarBorderColor,
     body,
     footer,
+    footerBackgroundColor,
+    footerColor,
+    footerBorderColor,
+    footerFixed,
     children,
   } = props
   
@@ -38,6 +44,7 @@ export function Body(props: BodyProps) {
               sidebarHeader={sidebarHeader}
               backgroundColor={sidebarBackgroundColor}
               color={sidebarColor}
+              borderColor={sidebarBorderColor}
             >
               { cloneElement(sidebar) }
             </Sidebar>
@@ -49,6 +56,7 @@ export function Body(props: BodyProps) {
             <Header
               backgroundColor={headerBackgroundColor}
               color={headerColor}
+              borderColor={headerBorderColor}
             >
               { cloneElement(header) }
             </Header>
@@ -56,7 +64,18 @@ export function Body(props: BodyProps) {
           : void 0 
         }
         body={body ? <FrameBody>{ cloneElement(body) }</FrameBody> : void 0 }
-        footer={footer ? <Footer>{ cloneElement(footer) }</Footer> : void 0 }
+        footer={footer 
+          ? (
+            <Footer 
+              backgroundColor={footerBackgroundColor} 
+              color={footerColor}
+              borderColor={footerBorderColor}
+              fixed={footerFixed}
+            >
+              { cloneElement(footer) }
+            </Footer>
+          ) : void 0 
+        }
       />
     </MuiThemeProvider>
   )

@@ -5,6 +5,7 @@ interface HeaderProps {
   children?: ReactElement
   backgroundColor?: string
   color?: string
+  borderColor?: string
 }
 
 const useStyles = makeStyles(theme => ({
@@ -18,9 +19,9 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Header({ children, backgroundColor, color }: HeaderProps) {
+export default function Header({ children, backgroundColor, color, borderColor }: HeaderProps) {
   const classes = useStyles()
-  const style = { backgroundColor, color }
+  const style = { backgroundColor, color, borderColor }
   return (
     <AppBar position="relative">
       <Toolbar className={classes.toolbar} style={style}>

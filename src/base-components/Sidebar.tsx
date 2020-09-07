@@ -11,6 +11,7 @@ export interface SidebarProps {
   sidebarHeaderBackgroundColor?: string
   sidebarHeaderColor?: string
   color?: string
+  borderColor?: string
 }
 
 const useStyles = makeStyles(theme => ({
@@ -52,12 +53,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Sidebar = ({ children, sidebarHeader, backgroundColor, color }: SidebarProps) => {
+const Sidebar = ({ children, sidebarHeader, backgroundColor, color, borderColor }: SidebarProps) => {
   const [ isOpen, setIsOpen ] = useState(false)
   const refIsMdOrSmaller = useRef(true)
   const { breakpoints: { md } } = useScreenDimension()
   const classes = useStyles()
-  const style = { backgroundColor, color }
+  const style = { backgroundColor, color, borderColor }
   const handleToggleSidebar = () => setIsOpen(previousIsOpen => !previousIsOpen)
   
   useEffect(() => {
