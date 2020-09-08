@@ -30,6 +30,7 @@ export interface AlertProps {
   setAlert: Dispatch<any>
   autoHideDuration?: number
   fixed?: boolean
+  opacity?: number
 }
 
 const useStyles = makeStyles(() => ({
@@ -44,9 +45,10 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-function Alert({ alert, setAlert, autoHideDuration = ALERT_AUTOHIDE_DURATION, fixed = false}: AlertProps) {
+function Alert({ alert, setAlert, autoHideDuration = ALERT_AUTOHIDE_DURATION, fixed = false, opacity}: AlertProps) {
   const [alerts, setAlerts] = useState<ReactElement[]>([])
   const classes = useStyles()
+  const style = { opacity }
   const handleClose = useCallback((variant: AlertVariants, index: number) => setAlert((previousAlert: AlertType) => {
     const update = previousAlert[variant].filter((alert: string, key: number) => key !== index)
     previousAlert[variant] = update
@@ -80,7 +82,7 @@ function Alert({ alert, setAlert, autoHideDuration = ALERT_AUTOHIDE_DURATION, fi
 
   if (alerts.length) {
     return (
-      <div className={fixed ? classes.alertContainerFixed : void 0}>
+      <div className={fixed ? classes.alertContainerFixed : void 0} style={style}>
         {alerts}
       </div>
     )
