@@ -329,7 +329,7 @@ const SignUp: FC<SignUpProps> = ({
           </Card>
         </form>
       </Slide>
-      <CircularLoader isLoading={isLoading} fullScreen />
+      <CircularLoader isLoading={isLoading} />
     </Fragment>
   )
 }

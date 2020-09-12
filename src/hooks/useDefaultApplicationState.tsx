@@ -9,12 +9,9 @@ import {
 
 const ONE_YEAR = 365 * 24 * 60 * 60 * 1000
 
-export type UserRoles = Array<'guest' | 'user' | 'admin' | 'superadmin'>
-
 export const defaultAppContext = {
   hasClientId: false,
   userProfile: void 0,
-  userRoles: ['guest'],
   setUserProfile: () => {},
   alert: new AlertDefaultObject(),
   setAlert: () => {},
@@ -31,7 +28,6 @@ export default function useDefaultApplicationState(clientName: string, muiTheme:
   const [alert, setAlert] = useState<AlertType>(new AlertDefaultObject())
   const { setClientId } = useDefaultApplicationClient()
   const themeOptions = themeType === 'dark' && !!customDarkTheme ? customDarkTheme(customDarkThemeBackgroundColor) : muiTheme(themeType)
-  const userRoles: UserRoles = userProfile ? [...userProfile.roles] : ['guest']
 
   const onToggleTheme = (event: React.MouseEvent<HTMLElement>, themeType: 'light' | 'dark') => {
     cookies.set('themeType', themeType, ONE_YEAR)
@@ -71,7 +67,6 @@ export default function useDefaultApplicationState(clientName: string, muiTheme:
   const provider: any = {
     hasClientId,
     userProfile,
-    userRoles,
     setUserProfile,
     handleAuthFailure,
     handleAuthSuccess,
@@ -90,7 +85,6 @@ export default function useDefaultApplicationState(clientName: string, muiTheme:
     setAlert,
     themeOptions,
     hasClientId,
-    userRoles,
     themeType,
     onToggleTheme,
   }
