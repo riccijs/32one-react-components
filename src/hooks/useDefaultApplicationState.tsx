@@ -7,6 +7,21 @@ import {
   AlertVariants,
 } from '../components'
 
+export interface AppProvider {
+  hasClientId: boolean
+  userProfile: any
+  userGroups: string[]
+  setUserProfile: (userProfile: any) => void
+  handleAuthFailure: () => void
+  handleAuthSuccess: () => void
+  alert: {
+    error: (error: string) => void
+    warning: (warning: string) => void
+    success: (success: string) => void
+    info: (info: string) => void
+  }
+}
+
 const ONE_YEAR = 365 * 24 * 60 * 60 * 1000
 
 export const defaultAppContext = {
@@ -66,7 +81,7 @@ export default function useDefaultApplicationState(clientName: string, muiTheme:
     info,
   }
 
-  const provider: any = {
+  const provider: AppProvider = {
     hasClientId,
     userProfile,
     userGroups,
