@@ -2,19 +2,19 @@ import React, { FC } from 'react'
 import { Route, RouteProps, Redirect } from 'react-router-dom'
 
 export interface SecureRouteProps extends RouteProps {
-  allowedRoles: Array<string> 
-  userRoles: Array<string>
+  appGroups: Array<string> 
+  userGroups: Array<string>
   redirectTo?: string
 }
 
 const SecureRoute: FC<SecureRouteProps> = (props) => {
-  const { allowedRoles, userRoles, redirectTo } = props
-  const isAllowed = handleIsAllowed(allowedRoles, userRoles)
+  const { appGroups, userGroups, redirectTo } = props
+  const isAllowed = handleIsAllowed(appGroups, userGroups)
 
-  function handleIsAllowed(allowedRoles: Array<string>, userRoles: Array<string>) {
+  function handleIsAllowed(appGroups: Array<string>, userGroups: Array<string>) {
     let isAllowed = false
-    allowedRoles.forEach(role => {
-      if (!isAllowed && userRoles.includes(role)) isAllowed = true
+    appGroups.forEach(role => {
+      if (!isAllowed && userGroups.includes(role)) isAllowed = true
     })
     return isAllowed
   }
