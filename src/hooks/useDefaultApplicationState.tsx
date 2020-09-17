@@ -44,7 +44,7 @@ export default function useDefaultApplicationState(clientName: string, muiTheme:
   const [alert, setAlert] = useState<AlertType>(new AlertDefaultObject())
   const { setClientId } = useDefaultApplicationClient()
   const themeOptions = themeType === 'dark' && !!customDarkTheme ? customDarkTheme(customDarkThemeBackgroundColor) : muiTheme(themeType)
-  const userGroups = userProfile ? [...userProfile.groups] : ['guest']
+  const userGroups = userProfile ? [...userProfile.groups.map((group: any) => group.group)] : ['guest']
 
   const onToggleTheme = (event: React.MouseEvent<HTMLElement>, themeType: 'light' | 'dark') => {
     cookies.set('themeType', themeType, ONE_YEAR)
