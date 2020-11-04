@@ -11,7 +11,12 @@ export default function useDefaultApplicationUser() {
   const checkIfUsernameOrEmailAddressExists = async (usernameOrEmail: string, isGlobalCheck?: boolean) => {
     const isEmailAddress = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,12})+$/.test(usernameOrEmail)
     const data = isEmailAddress ? { emailAddress: usernameOrEmail } : { username: usernameOrEmail }
-    return await Axios.post('https://32one.live/api/v1/user/exists', { ...data, isGlobalCheck })
+    return await Axios({
+      method: 'POST',
+      url: 'https://32one.live/api/v1/user/exists', 
+      data: { ...data, isGlobalCheck },
+      withCredentials: true,
+    })
   }
 
   const signIn = useCallback(async (password: string) => {
