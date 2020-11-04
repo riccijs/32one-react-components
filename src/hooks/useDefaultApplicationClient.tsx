@@ -7,7 +7,11 @@ export default function useDefaultApplicationClient() {
   }, [])
 
   const setClientId = useCallback(async (clientName: string) => {
-    return await Axios.get(`https://32one.live/api/v1/client/id/${clientName}`)
+    return await Axios({
+      url: `https://32one.live/api/v1/client/id/${clientName}`,
+      method: 'GET',
+      withCredentials: true,
+    })
   }, [])
 
   return {
