@@ -1,14 +1,14 @@
 import { useCallback } from 'react'
 import Axios from 'axios'
 
-export default function useDefaultApplicationClient(protocol: 'http' | 'https', hostname: string) {
+export default function useDefaultApplicationClient() {
   const getClientName = useCallback(async () => {
-    return await Axios.get(`${protocol}://${hostname}/api/v1/client/name`)
+    return await Axios.get(`${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/client/name`)
   }, [])
 
   const setClientId = useCallback(async (clientName: string) => {
     return await Axios({
-      url: `${protocol}://${hostname}/api/v1/client/id/${clientName}`,
+      url: `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/client/id/${clientName}`,
       method: 'GET',
       withCredentials: true,
     })
