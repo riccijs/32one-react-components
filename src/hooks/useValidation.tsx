@@ -8,9 +8,9 @@ export interface Validate {
   password?: string
 }
 
-export default function useValidation(validate: Validate) {
+export default function useValidation(validate: Validate, protocol: 'http' | 'https', hostname: string) {
   const [usernameAvailable, setUsernameAvailable] = useState<string>('')
-  const { checkUsernameAvailability } = useDefaultApplicationUser()
+  const { checkUsernameAvailability } = useDefaultApplicationUser(protocol, hostname)
   
   const emailAddress = !!validate.emailAddress && !validation.emailAddress(validate.emailAddress) 
     ? 'Enter a valid email address'

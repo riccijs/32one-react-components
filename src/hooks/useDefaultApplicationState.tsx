@@ -35,14 +35,22 @@ export const defaultAppContext = {
   handleAuthSuccess: () => {},
 }
 
-export default function useDefaultApplicationState(clientName: string, muiTheme: any, initialThemeType?: 'light' | 'dark', customDarkTheme?: any, customDarkThemeBackgroundColor?: string) {
+export default function useDefaultApplicationState(
+  protocol: 'http' | 'https',
+  hostname: string,
+  clientName: string, 
+  muiTheme: any, 
+  initialThemeType?: 'light' | 'dark', 
+  customDarkTheme?: any, 
+  customDarkThemeBackgroundColor?: string,
+) {
   const defaultThemeType: any = cookies.get('themeType') || initialThemeType || 'light'
   const defaultUserProfile: any = cookies.get('userProfile')
   const [themeType, setThemeType] = useState<'light' | 'dark'>(defaultThemeType)
   const [hasClientId, setHasClientId] = useState<boolean>(false)
   const [userProfile, setUserProfile] = useState<any>(defaultUserProfile ? JSON.parse(defaultUserProfile) : void 0)
   const [alert, setAlert] = useState<AlertType>(new AlertDefaultObject())
-  const { setClientId } = useDefaultApplicationClient()
+  const { setClientId } = useDefaultApplicationClient(protocol, hostname)
   const themeOptions = themeType === 'dark' && !!customDarkTheme ? customDarkTheme(customDarkThemeBackgroundColor) : muiTheme(themeType)
   const userGroups = userProfile ? [...userProfile.groups.map((group: any) => group.group)] : ['guest']
 
