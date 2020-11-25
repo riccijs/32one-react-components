@@ -49,10 +49,9 @@ const SignIn: FunctionComponent<SignInProps> = ({ postSignInUrl, onError, onSucc
         setIsLoading(false)
       }
       else {
-        const test = await handleCheckPassword()
-        console.log(test)
-        // if (onSuccess) onSuccess(data)
-        // history.push(postSignInUrl)
+        const { data } = await handleCheckPassword()
+        if (onSuccess) onSuccess(data)
+        history.push(postSignInUrl)
       }
     }
     catch (err) {
