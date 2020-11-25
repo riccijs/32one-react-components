@@ -20,23 +20,46 @@ export default function useDefaultApplicationUser() {
   }
 
   const signIn = useCallback(async (password: string) => {
-    return await Axios.post(`${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/sign-in`, { password })
+    return await Axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/sign-in`, 
+      data: { password },
+      withCredentials: true,
+    })
   }, [])
 
   const sendEmail = useCallback(async (options: SendEmailOptions) => {
-    return await Axios.post(`${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/client/email-delivery/send`, options)
+    return await Axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/client/email-delivery/send`, 
+      data: options,
+      withCredentials: true,
+    })
   }, [])
 
   const verifyContactInformation = useCallback(async (searchStr: string) => {
-    return await Axios.post(`${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/contact-information/verify${searchStr}`)
+    return await Axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/contact-information/verify${searchStr}`, 
+      withCredentials: true,
+    })
   }, [])
 
   const resetPassword = useCallback(async (searchStr: string, password: string) => {
-    return await Axios.post(`${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/reset-password${searchStr}`, { password })
+    return await Axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/reset-password${searchStr}`, 
+      data: { password },
+      withCredentials: true,
+    })
   }, [])
 
   const checkPreviousRegistration = useCallback(async (emailAddress: string) => {
-    return await Axios.get(`${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/check-registration/${emailAddress}`)
+    return await Axios({
+      method: 'GET',
+      url: `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/check-registration/${emailAddress}`, 
+      withCredentials: true,
+    })
   }, [])
 
   const checkUsernameAvailability = useCallback(async (username) => {
@@ -44,11 +67,20 @@ export default function useDefaultApplicationUser() {
   }, [])
 
   const register = useCallback(async (user: SignUpUser) => {
-    return await Axios.post(`${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/add`, user)
+    return await Axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/add`, 
+      data: user,
+      withCredentials: true,
+    })
   }, [])
 
   const registerClient = useCallback(async () => {
-    return await Axios.post(`${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/add-client`)
+    return await Axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_HOSTNAME}/api/v1/user/add-client`, 
+      withCredentials: true,
+    })
   }, [])
 
   return {

@@ -8,7 +8,11 @@ export default function useSession(sessionVerificationEndpoint: string, onAuthSu
 
   const verifySession = useCallback(async () => {
     try {
-      await Axios.get(sessionVerificationEndpoint)
+      await Axios({
+        method: 'GET',
+        url: sessionVerificationEndpoint, 
+        withCredentials: true,
+      })
       if (!!onAuthSuccess) onAuthSuccess()
     }
     catch (err) {
